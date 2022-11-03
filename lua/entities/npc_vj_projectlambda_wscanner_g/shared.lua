@@ -1,0 +1,8 @@
+ENT.Base 			= "npc_vj_projectlambda_wscanner"
+ENT.Type 			= "ai"
+ENT.PrintName 		= "Wasteland Scanner"
+ENT.Author 			= "Warkin"
+ENT.Contact 		= "http://steamcommunity.com/groups/vrejgaming"
+ENT.Purpose 		= "Spawn it and fight with it!"
+ENT.Instructions 	= "Click on the spawnicon to spawn it."
+ENT.Category		= "Project Lambda"

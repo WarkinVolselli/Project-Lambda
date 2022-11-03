@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\vj_projectlambda\floater\peashooter"
+	"$bumpmap" "models\vj_projectlambda\floater\peashooter_n"
+	$phong 1
+	$phongexponent			10
+	$phongboost				10
+	$phongfresnelranges		"[0 0.5 1]"
+}

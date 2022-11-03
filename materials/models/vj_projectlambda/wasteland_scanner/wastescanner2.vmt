@@ -1,0 +1,13 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/vj_projectlambda/wasteland_scanner/wastescanner2"
+	"$bumpmap" "Models/vj_projectlambda/wasteland_scanner/wastescanner_n"
+	"$envmap" "env_cubemap"
+	"$basealphaenvmapmask" 1
+	$phong 1
+	$phongexponent			10
+	$phongboost				5
+	$phongfresnelranges		"[0 0.5 1]"
+	"$model" 1
+	$selfillum 1
+}

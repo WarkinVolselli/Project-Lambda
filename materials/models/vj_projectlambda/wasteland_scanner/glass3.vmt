@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/vj_projectlambda/wasteland_scanner/glass3"
+	"$model" 1
+    $selfillum 1
+	$phong 1
+	$phongexponent			10
+	$phongboost				10
+	$phongfresnelranges		"[0 0.5 1]"
+}
+
