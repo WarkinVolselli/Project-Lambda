@@ -61,6 +61,7 @@ if VJExists == true then
 	
 	local vCat = "Project Lambda: Combine"
 
+	VJ.AddNPC("Alien Assassin", "npc_vj_projectlambda_assassin", vCat)
 	VJ.AddNPC("Wasteland Scanner", "npc_vj_projectlambda_wscanner", vCat)
 	VJ.AddNPC("Wasteland Scanner (Green)", "npc_vj_projectlambda_wscanner_g", vCat)
 -- !!!!!! DON'T TOUCH ANYTHING BELOW THIS !!!!!! -------------------------------------------------------------------------------------------------------------------------

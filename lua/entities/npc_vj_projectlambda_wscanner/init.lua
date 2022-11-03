@@ -20,7 +20,8 @@ ENT.ConstantlyFaceEnemy = true -- Should it face the enemy constantly?
 ENT.IdleAlwaysWander = true -- If set to true, it will make the SNPC always wander when idling
 ENT.CanOpenDoors = false -- Can it open doors?
 ENT.VJ_NPC_Class = {"CLASS_COMBINE"} -- NPCs with the same class with be allied to each other
-ENT.BloodColor = "Blue" -- The blood type, this will determine what it should use (decal, particle, etc.)
+ENT.BloodColor = "Yellow" -- The blood type, this will determine what it should use (decal, particle, etc.)
+ENT.BloodPoolSize = "Small" -- What's the size of the blood pool? | Sizes: "Normal" || "Small" || "Tiny"
 ENT.HasMeleeAttack = false -- Should the SNPC have a melee attack?
 
 ENT.HasRangeAttack = true -- Should the SNPC have a range attack?
@@ -44,8 +45,12 @@ ENT.NoChaseAfterCertainRange_Type = "Regular" -- "Regular" = Default behavior | 
 	-- ====== Sound File Paths ====== --
 -- Leave blank if you don't want any sounds to play
 ENT.BreathSoundLevel = 65
-ENT.SoundTbl_Breath = {"npc/scanner/combat_scan_loop2.wav"}
-ENT.SoundTbl_RangeAttack = {"npc/waste_scanner/grenade_fire.wav"}
+ENT.SoundTbl_Breath = {"vj_projectlambda/wscanner/hover.wav"}
+ENT.SoundTbl_RangeAttack = {"vj_projectlambda/wscanner/grenade_fire.wav"}
+ENT.SoundTbl_Alert = {"vj_projectlambda/wscanner/alarm1.wav"}
+ENT.SoundTbl_CombatIdle = {"vj_projectlambda/wscanner/alarm1.wav"}
+ENT.SoundTbl_Pain = {"vj_projectlambda/wscanner/attach.wav","vj_projectlambda/wscanner/detach.wav"}
+ENT.SoundTbl_Death = {"vj_projectlambda/wscanner/found_help.wav"}
 
 -- Custom
 ENT.Scanner_FollowOffsetPos = 0
@@ -76,6 +81,21 @@ function ENT:CustomOnThink()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo,hitgroup)
+if (self:Health() <= (self:GetMaxHealth() / 2)) then
+    ParticleEffectAttach("burning_gib_01",PATTACH_POINT_FOLLOW,self,self:LookupAttachment("origin"))
+	self.SoundTbl_Breath = {"vj_projectlambda/wscanner/hover_alarm.wav"}
+end
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:RangeAttackCode_GetShootPos(projectile)
 	return self:CalculateProjectile("Curve", self:GetPos() + self:GetForward()*20 + self:GetUp()*20, self:GetEnemy():GetPos() + self:GetEnemy():OBBCenter(), 1500)
+end
+---------------------------------------------------------------------------------------------------------------------------------------------
+function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
+	ParticleEffect("explosion_turret_break",self:GetPos(),Angle(0,0,0),nil)
+	ParticleEffect("AntlionGib",self:GetPos(),Angle(0,0,0),nil)
+	util.BlastDamage(self,self,self:GetPos(),80,20)
+
+	VJ_EmitSound(self,"npc/scanner/scanner_explode_crash2.wav",80)
 end
